@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Fengjun Sun*, Yingqiu Li, Guojun Sheng, Xiaolin Yao Dalian Neusoft University of Information">
+  <title>PubMed Central Citation Context Dataset</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reset.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/theme/simple.css" id="theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">PubMed Central Citation Context Dataset</h1>
+  <p class="author">Fengjun Sun*, Yingqiu Li, Guojun Sheng, Xiaolin Yao Dalian Neusoft University of Information</p>
+</section>
+
+<section id="what-is-citation-context" class="slide level2">
+<h2>What is citation context?</h2>
+<ul>
+<li>Citation context is the text around the citation marker.</li>
+<li>e.g.<br />
+<img data-src="./img/citation_context_example.png" alt="citation_context_example" /></li>
+</ul>
+</section>
+<section id="citation-context-usage" class="slide level2">
+<h2>Citation context usage</h2>
+<ul>
+<li>summarization</li>
+<li>synonym identification and disambiguation</li>
+<li>entity recognition and relation extraction</li>
+<li>curation and information retrieval</li>
+<li>unannotated comparable corpora</li>
+<li>co-word analysis<br />
+…</li>
+</ul>
+</section>
+<section id="a-few-scholar-datasets" class="slide level2">
+<h2>A few scholar datasets</h2>
+<ul>
+<li>CiteSeerX (Huang, Wu, Liang, Mitra, &amp; Giles, 2015)</li>
+<li>Scholarly Dataset 2 (Sugiyama &amp; Kan, 2015)</li>
+<li>arXiv CS (Färber, Thiemann, &amp; Jatowt, 2018)</li>
+<li>unarXive (Saier &amp; Färber, 2020)</li>
+<li>ACL-ARC (Bird et al., 2008)</li>
+<li>ACL-AAN (Radev, Muthukrishnan, Qazvinian, &amp; Abu-Jbara, 2013)</li>
+<li>PubMed Central (Roberts, 2002)</li>
+</ul>
+</section>
+<section id="limitations-of-current-datasets" class="slide level2">
+<h2>Limitations of current datasets</h2>
+<ul>
+<li>too small</li>
+<li>contain noisy, inaccurate information</li>
+<li>in PDF and hard to process</li>
+</ul>
+</section>
+<section id="pubmed-central-citation-context-dataset" class="slide level2">
+<h2>PubMed Central Citation Context Dataset</h2>
+<ul>
+<li>a citation database with citation contexts</li>
+<li>based on PubMed Central Open Access Subset</li>
+<li>saved in MongoDB database</li>
+<li>freely accessible</li>
+<li>data cleaned</li>
+</ul>
+</section>
+<section id="data-source" class="slide level2">
+<h2>Data source</h2>
+<ul>
+<li>PubMed Central Open Access Subset</li>
+<li>downloaded in December 2019</li>
+<li>used the official PubMed Central FTP service</li>
+<li>papers are in XML format</li>
+</ul>
+</section>
+<section id="each-papers-processing" class="slide level2">
+<h2>Each paper’s processing</h2>
+<figure>
+<img data-src="./img/the_steps_to_extract_data.jpg" alt="the_steps_to_extract_data" /><figcaption aria-hidden="true">the_steps_to_extract_data</figcaption>
+</figure>
+</section>
+<section id="citance-vs.-cite-paragraph" class="slide level2">
+<h2>Citance vs. Cite-paragraph</h2>
+<ul>
+<li>citance (too short or too long)</li>
+<li>cite-paragraph (too long)
+<ul>
+<li>maximum window size</li>
+<li>keep the index of the citation marker</li>
+<li>leave the choice to the users</li>
+</ul></li>
+</ul>
+</section>
+<section id="entity-relationship" class="slide level2">
+<h2>Entity relationship</h2>
+<figure>
+<img data-src="./img/Entity_Relationship_Diagram.png" alt="Entity_Relationship_Diagram" /><figcaption aria-hidden="true">Entity_Relationship_Diagram</figcaption>
+</figure>
+</section>
+<section id="data-records---literature" class="slide level2">
+<h2>Data records - Literature</h2>
+<p><img data-src="./img/Literature.png" /></p>
+</section>
+<section id="data-records---cite" class="slide level2">
+<h2>Data records - Cite</h2>
+<p><img data-src="./img/Cite.png" /></p>
+</section>
+<section id="data-records---citationcontexttext" class="slide level2">
+<h2>Data records - CitationContextText</h2>
+<p><img data-src="./img/CitationContextText.png" /></p>
+</section>
+<section id="data-records---citationcontext" class="slide level2">
+<h2>Data records - CitationContext</h2>
+<p><img data-src="./img/CitationContext.png" /></p>
+</section>
+<section id="usage-notes" class="slide level2">
+<h2>Usage Notes</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>download from the data repository</li>
+<li>use command <code>mongorestore</code> to load data to MongoDB database</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<figure>
+<img data-src="./img/dataset.png" alt="dataset_QR_code" /><figcaption aria-hidden="true">dataset_QR_code</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="limitations" class="slide level2">
+<h2>Limitations</h2>
+<ul>
+<li>only between the PubMed Central citing papers and PubMed cited documents</li>
+<li>too few metadata for a Literature object</li>
+<li>all in the field of biomedical and life sciences</li>
+</ul>
+</section>
+<section id="thank-you-very-much" class="slide level2">
+<h2>Thank you very much!</h2>
+</section>
+<section id="contact" class="slide level2">
+<h2>Contact</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>email: fengjun.sun@gmail.com sunfengjun@neusoft.edu.cn</p>
+</div><div class="column" style="width:50%;">
+<figure>
+<img data-src="./img/github_QR_code.png" alt="github_QR_code" /><figcaption aria-hidden="true">github_QR_code</figcaption>
+</figure>
+</div>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js@^4//dist/reveal.js"></script>
+
+  // reveal.js plugins
+  <script src="https://unpkg.com/reveal.js@^4//plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/search/search.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
